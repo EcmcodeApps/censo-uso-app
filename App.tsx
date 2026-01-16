@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CensusForm } from './components/CensusForm';
 import { ResultCard } from './components/ResultCard';
-import { checkCensusEligibility } from './services/censusService';
+import { checkCensusEligibility } from './components/censusService';
 import { CensusResponse, SearchParams } from './types';
 
 function App() {
