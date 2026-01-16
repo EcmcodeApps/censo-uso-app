@@ -1,0 +1,5 @@
+{
+  "name": "USO Census Verifier",
+  "description": "Voting census verification tool for Unión Sindical Obrera (USO) members.",
+  "requestFramePermissions": []
+}
