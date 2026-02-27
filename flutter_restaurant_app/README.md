@@ -2,243 +2,200 @@
 
 Aplicación de ecommerce para restaurante con servicio de delivery a domicilio desarrollada en Flutter.
 
-## 📱 Características
+[![Open in Firebase Studio](https://firebase.studio/button.svg)](https://idx.google.com/import?url=https://github.com/EcmcodeApps/censo-uso-app)
 
-- ✅ **Búsqueda de platos** con filtros avanzados
-- ✅ **Sistema de calificaciones** con estrellas y promedios
-- ✅ **Me gusta / Favoritos** con contador de likes
-- ✅ **Filtros por categoría**, precio y calificación
-- ✅ **Diseño responsivo** para Android e iOS
-- ✅ **Paginación** de resultados
-- ✅ **Estado manejado con Provider**
+---
 
-## 🚀 Guía de Implementación Paso a Paso
+## 🚀 Abrir en Google IDX / Firebase Studio (Recomendado)
 
-### Requisitos Previos
+> **IDX** es el IDE en la nube de Google — no necesitas instalar NADA en tu computador.
 
-1. **Flutter SDK** (versión 3.0.0 o superior)
-2. **Android Studio** o **VS Code**
-3. **Dart SDK** (incluido con Flutter)
-4. Dispositivo físico o emulador
+### Paso 1 — Ir a Firebase Studio
 
-### Paso 1: Instalar Flutter
-
-```bash
-# macOS/Linux
-git clone https://github.com/flutter/flutter.git -b stable
-export PATH="$PATH:`pwd`/flutter/bin"
-
-# Verificar instalación
-flutter doctor
+Abre tu navegador y entra a:
 ```
-
-### Paso 2: Configurar Android Studio
-
-1. Descargar Android Studio desde: https://developer.android.com/studio
-2. Instalar el plugin de Flutter:
-   - Abrir Android Studio
-   - File → Settings → Plugins
-   - Buscar "Flutter" e instalar
-   - Reiniciar Android Studio
-
-3. Configurar el SDK de Android:
-   - File → Settings → Languages & Frameworks → Flutter
-   - Seleccionar la ruta del Flutter SDK
-
-### Paso 3: Crear el Proyecto
-
-```bash
-# Opción A: Copiar los archivos del proyecto existente
-cd flutter_restaurant_app
-flutter pub get
-
-# Opción B: Crear proyecto nuevo y copiar archivos
-flutter create restaurant_ecommerce
-cd restaurant_ecommerce
-# Copiar los archivos de lib/ al nuevo proyecto
+https://firebase.studio
 ```
+Inicia sesión con tu cuenta de Google.
 
-### Paso 4: Instalar Dependencias
+---
 
-El archivo `pubspec.yaml` incluye las siguientes dependencias:
+### Paso 2 — Importar el proyecto desde GitHub
 
-```yaml
-dependencies:
-  flutter:
-    sdk: flutter
-  cupertino_icons: ^1.0.6
-  google_fonts: ^6.1.0
-  flutter_rating_bar: ^4.0.1
-  cached_network_image: ^3.3.1
-  shimmer: ^3.0.0
-  provider: ^6.1.1
-  intl: ^0.18.1
-  uuid: ^4.2.2
-```
+1. Haz clic en **"Import a repo"** o **"New workspace"**
+2. Selecciona **"Import from GitHub"**
+3. Pega esta URL del repositorio:
+   ```
+   https://github.com/EcmcodeApps/censo-uso-app
+   ```
+4. En tipo de proyecto selecciona **"Flutter"**
+5. Haz clic en **"Create Workspace"**
 
-Ejecutar:
+> IDX detectará automáticamente el archivo `.idx/dev.nix` y configurará Flutter, el SDK de Android y todas las herramientas necesarias.
+
+---
+
+### Paso 3 — Esperar la configuración automática (~2 minutos)
+
+IDX hará todo esto solo:
+- ✅ Instala Flutter SDK
+- ✅ Instala Android SDK
+- ✅ Instala extensiones de Dart y Flutter
+- ✅ Ejecuta `flutter pub get` (instala dependencias)
+
+---
+
+### Paso 4 — Ejecutar la app
+
+Una vez que el workspace esté listo, tienes dos opciones:
+
+**Opción A — Panel de Preview (más fácil):**
+1. Busca el panel **"Preview"** en el lado derecho
+2. Selecciona **"Android"**
+3. ¡El emulador abre directo en el navegador!
+
+**Opción B — Terminal integrada:**
 ```bash
-flutter pub get
-```
-
-### Paso 5: Crear Carpeta de Assets
-
-```bash
-mkdir -p assets/images
-mkdir -p assets/fonts
-```
-
-### Paso 6: Ejecutar la Aplicación
-
-```bash
-# Listar dispositivos disponibles
-flutter devices
-
-# Ejecutar en modo debug
+# Para ver en el emulador Android (recomendado)
 flutter run
 
-# Ejecutar en dispositivo específico
-flutter run -d <device_id>
+# Para ver en el navegador web
+flutter run -d chrome
 
-# Ejecutar con hot reload
-flutter run --hot
+# Para instalar dependencias si hace falta
+flutter pub get
 ```
+
+---
+
+### Paso 5 — ¡Listo! Empieza a editar
+
+- Abre `lib/main.dart` para ver la estructura principal
+- Abre `lib/screens/search_screen.dart` para editar la pantalla de búsqueda
+- Cada cambio que guardes se refleja al instante con **Hot Reload** (Ctrl+S)
+
+---
+
+## 📱 Características de la App
+
+| Función | Descripción |
+|---------|-------------|
+| 🔍 **Buscador** | Busca por nombre, ingredientes o categoría |
+| ⭐ **Calificaciones** | Estrellas + promedio + número de reviews |
+| ❤️ **Favoritos** | Botón de corazón con contador de likes |
+| 🏷️ **Filtros** | Por categoría, rango de precio y rating mínimo |
+| 📄 **Paginación** | Navega entre páginas de resultados |
+| 🛒 **Detalle del plato** | Pantalla completa con ingredientes y precio |
+
+---
 
 ## 📁 Estructura del Proyecto
 
 ```
-lib/
-├── main.dart                    # Punto de entrada
-├── constants/
-│   └── app_constants.dart       # Colores, estilos, dimensiones
-├── models/
-│   └── dish_model.dart          # Modelo de datos para platos
-├── providers/
-│   └── dish_provider.dart       # Estado global con Provider
-├── screens/
-│   └── search_screen.dart       # Pantalla de búsqueda principal
-├── services/
-│   └── dish_service.dart        # Servicio de datos (mock/API)
-└── widgets/
-    ├── dish_card.dart           # Tarjeta de plato
-    ├── search_bar_widget.dart   # Barra de búsqueda y filtros
-    └── widgets.dart             # Exportaciones
+flutter_restaurant_app/
+├── .idx/
+│   └── dev.nix              ← Configuración automática de IDX
+├── lib/
+│   ├── main.dart            ← Punto de entrada + navegación
+│   ├── constants/
+│   │   └── app_constants.dart   ← Colores, estilos
+│   ├── models/
+│   │   └── dish_model.dart      ← Modelo de datos del plato
+│   ├── providers/
+│   │   └── dish_provider.dart   ← Estado global
+│   ├── screens/
+│   │   └── search_screen.dart   ← Pantalla de búsqueda principal
+│   ├── services/
+│   │   └── dish_service.dart    ← Datos y lógica de búsqueda
+│   └── widgets/
+│       ├── dish_card.dart       ← Tarjeta visual del plato
+│       └── search_bar_widget.dart ← Barra de búsqueda y filtros
+├── pubspec.yaml             ← Dependencias del proyecto
+└── launch.sh               ← Script de inicio rápido
 ```
 
-## 🎨 Componentes Principales
+---
 
-### DishCard
-Widget que muestra cada plato con:
-- Imagen con placeholder
-- Botón de favorito
-- Nombre del plato
-- Tiempo de preparación
-- Calificación con estrellas
-- Número de reviews
+## 🎨 Platos de Muestra Incluidos
 
-### SearchBarWidget
-Barra de búsqueda con:
-- Campo de texto con icono
-- Botón de limpiar búsqueda
-- Botón de filtros
+La app viene con **12 platos** de ejemplo listos para probar:
 
-### FilterBottomSheet
-Panel de filtros con:
-- Selector de categoría
-- Rango de precio (slider)
-- Calificación mínima (slider)
+| Plato | Categoría | Rating |
+|-------|-----------|--------|
+| Strawberry Cake | Postres | ⭐ 5.0 |
+| French Fries | Entradas | ⭐ 5.0 |
+| Maxican Fried Rice | Platos Fuertes | ⭐ 5.0 |
+| Pasta Carbonara | Platos Fuertes | ⭐ 4.8 |
+| Tacos al Pastor | Platos Fuertes | ⭐ 4.9 |
+| Chocolate Brownie | Postres | ⭐ 4.9 |
+| Grilled Salmon | Platos Fuertes | ⭐ 4.7 |
+| Mojito Clásico | Bebidas | ⭐ 4.8 |
+| Caesar Salad | Ensaladas | ⭐ 4.6 |
+| Manchau Soup | Sopas | ⭐ 5.0 |
 
-## 🔧 Personalización
+---
 
-### Cambiar Colores
-Editar `lib/constants/app_constants.dart`:
+## 🔧 Personalización Rápida
 
+### Cambiar colores
+Edita `lib/constants/app_constants.dart`:
 ```dart
-class AppColors {
-  static const Color primary = Color(0xFFFF9800);
-  static const Color secondary = Color(0xFF4CAF50);
-  // ...
-}
+static const Color primary = Color(0xFFFF9800); // Naranja → cambia aquí
 ```
 
-### Agregar Nuevos Platos
-Editar `lib/services/dish_service.dart`:
-
+### Agregar un plato nuevo
+Edita `lib/services/dish_service.dart` y agrega al final de la lista:
 ```dart
 DishModel(
   id: '13',
-  name: 'Nuevo Plato',
-  description: 'Descripción del plato',
-  imageUrl: 'https://...',
-  price: 15.99,
+  name: 'Tu Nuevo Plato',
+  description: 'Descripción deliciosa',
+  imageUrl: 'https://tu-imagen.com/foto.jpg',
+  price: 18.99,
   preparationTimeMin: 20,
   preparationTimeMax: 30,
-  rating: 4.5,
-  reviewsCount: 50,
+  rating: 4.7,
+  reviewsCount: 45,
   category: 'Platos Fuertes',
   ingredients: ['Ingrediente 1', 'Ingrediente 2'],
 ),
 ```
 
-### Conectar con API Real
-Modificar `lib/services/dish_service.dart`:
+---
 
-```dart
-Future<List<DishModel>> getAllDishes() async {
-  final response = await http.get(Uri.parse('$baseUrl/dishes'));
-  final List<dynamic> data = json.decode(response.body);
-  return data.map((json) => DishModel.fromJson(json)).toList();
-}
-```
+## 🔮 Ideas para Próximas Versiones
 
-## 📱 Screenshots
-
-La aplicación replica el diseño de la imagen de referencia con:
-- AppBar con botón atrás y título "Search"
-- Barra de búsqueda con filtros
-- Lista de platos con tarjetas
-- Paginación en la parte inferior
-- Sistema de favoritos interactivo
-
-## 🔮 Próximas Funcionalidades (Ideas)
-
-1. **Carrito de compras** con gestión de cantidades
-2. **Checkout** con múltiples métodos de pago
-3. **Tracking en tiempo real** del pedido
-4. **Notificaciones push** para estado del pedido
-5. **Historial de pedidos** del usuario
-6. **Sistema de cupones** y descuentos
-7. **Reviews y comentarios** de usuarios
-8. **Geolocalización** para entregas
-9. **Chat con el restaurante**
-10. **Modo offline** con datos en caché
-
-## 🛠️ Comandos Útiles
-
-```bash
-# Limpiar y reconstruir
-flutter clean && flutter pub get
-
-# Analizar código
-flutter analyze
-
-# Ejecutar tests
-flutter test
-
-# Construir APK
-flutter build apk --release
-
-# Construir iOS
-flutter build ios --release
-
-# Ver dependencias desactualizadas
-flutter pub outdated
-```
-
-## 📄 Licencia
-
-Este proyecto es de código abierto para fines educativos.
+1. 🛒 **Carrito de compras** con gestión de cantidades
+2. 💳 **Checkout** con MercadoPago o Stripe
+3. 📍 **Tracking GPS** del domiciliario en tiempo real
+4. 🔔 **Notificaciones push** con Firebase
+5. 💬 **Chat** con el restaurante
+6. 🎟️ **Cupones** y descuentos
+7. 📸 **Reviews con fotos** de los clientes
+8. 📊 **Dashboard** para el administrador del restaurante
 
 ---
 
-Desarrollado con ❤️ usando Flutter
+## ❓ Solución de Problemas en IDX
+
+**El emulador no carga:**
+```bash
+# En la terminal de IDX ejecuta:
+flutter clean
+flutter pub get
+flutter run
+```
+
+**Error de dependencias:**
+```bash
+flutter pub upgrade
+flutter pub get
+```
+
+**Hot reload no funciona:**
+- Presiona `r` en la terminal para hot reload manual
+- Presiona `R` para hot restart completo
+
+---
+
+Desarrollado con ❤️ en Flutter para Google IDX / Firebase Studio
